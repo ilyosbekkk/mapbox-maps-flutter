@@ -202,10 +202,12 @@ class _MapWidgetState extends State<MapWidget> {
 
   @override
   void dispose() async {
-    if (_controller.isCompleted) {
-      final controller = await _controller.future;
-      controller.dispose();
-    }
+    Future.delayed(Duration.zero, () async {
+      if (_controller.isCompleted) {
+        final controller = await _controller.future;
+        controller.dispose();
+      }
+    });
 
     super.dispose();
   }
